@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html
+  xmlns:mso="urn:schemas-microsoft-com:office:office"
+  xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+>
+  <head>
+    <title>Lightbox Sample</title>
+    <!-- Required to import the SDK -->
+    <script src="https://donate.mastercard.com/widget/p2/assets/sdk/donate-widget.min.js"></script>
+
+    <!-- Below styles are optional for button/Customer can use their own styles -->
+    <style>
+      .button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+      }
+
+      .button1 {
+        background-color: white;
+        color: black;
+        border: 2px solid #4caf50;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Customer need to add  onclick="loadWidgetSDK()" event to invoke SDK -->
+
+    <button type="button" class="button button1" onclick="loadWidgetSDK()">
+      Donate
+    </button>
+    <!-- Customer need to add  below script -->
+    <script>
+      var donationVariable = {
+        'ONE-TIME': {
+          minAmount: 1,
+          maxAmount: 9999,
+          defaultAmount: 2,
+          predefinedAmounts: [2, 4, 10],
+        },
+        ROUNDUP: {
+          minAmount: 1,
+          maxAmount: 9999,
+          defaultAmount: 50,
+          predefinedAmounts: [10, 20, 50, 75, 100],
+        },
+        MICRO: {
+          perTransaction: {
+            minAmount: 0.25,
+            maxAmount: 9999,
+            defaultAmount: 0.5,
+            predefinedAmounts: [0.25, 0.5, 0.75, 1],
+          },
+          perMonth: {
+            minAmount: 1,
+            maxAmount: 9999,
+            defaultAmount: 50,
+            predefinedAmounts: [10, 20, 50, 75, 100],
+          },
+        },
+        MONTHLY: {
+          minAmount: 1,
+          maxAmount: 9999,
+          defaultAmount: 50,
+          predefinedAmounts: [10, 20, 50, 75, 100],
+        },
+      };
+
+      function loadWidgetSDK() {
+        const widget = new window.DonateWidget();
+        widget.launchLightbox(
+          {
+            lang: 'en-us',
+            programId: 'ebd09343-59d0-4bb1-804e-e47aab59125d',
+            aemResource: 'healrworld_us',
+            charityId: 'c9d35838-3e99-4500-ae70-23f04148bbb5',
+            donations: donationVariable,
+            widgetMinHeight: 500,
+            dynamicHeight: true,
+            sourceId: 'HealRWorld_US',
+            cid: 'healrworld_us', // optional
+            guestOnly: false,
+          },
+          {
+            top: 40,
+            left: 40,
+            width: 400,
+            height: 700,
+            title: 'Widget popup',
+          }
+        );
+      }
+    </script>
+  </body>
+</html>
